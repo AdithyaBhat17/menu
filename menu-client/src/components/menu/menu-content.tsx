@@ -223,10 +223,14 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
                 onMouseEnter={() => handleMouseEnter(id)}
                 onMouseLeave={handleMouseLeave}
                 onClick={() =>
-                  !disabled && handleSelect(option[textKey] as string)
+                  !disabled &&
+                  !hasChildren &&
+                  handleSelect(option[textKey] as string)
                 }
                 onKeyDown={(e) =>
-                  !disabled && handleKeyDown(e, option[textKey] as string)
+                  !disabled &&
+                  !hasChildren &&
+                  handleKeyDown(e, option[textKey] as string)
                 }
                 data-id={id}
                 tabIndex={0}
