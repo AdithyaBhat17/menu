@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  @apply w-full h-screen;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.menu-content {
+  @apply bg-white p-1 rounded-md shadow-md border border-gray-200 text-gray-700;
+  @apply min-w-[256px];
+  @apply flex flex-col gap-1;
+  @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700;
+  @apply absolute z-10;
+}
+.menu-search-input {
+  @apply w-full py-1 px-2 border border-gray-200 rounded-md;
+  @apply dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200;
+}
+.menu-item {
+  @apply flex items-center justify-between;
+  @apply py-1 px-2 hover:bg-gray-100 rounded-md text-sm;
+  @apply dark:hover:bg-gray-700 ;
+  @apply cursor-pointer
+}
+.menu-item.focus {
+  @apply bg-gray-100 dark:bg-gray-700;
+}
+.menu-item-label {
+  @apply flex items-center gap-1;
+}
+.menu-item.selected {
+  @apply bg-gray-100 dark:bg-gray-700;
+}
+.menu-item.disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+.menu-item-cmd {
+  @apply bg-gray-50 rounded-md px-1 py-0.5;
+  @apply text-xs font-mono;
+  @apply dark:bg-gray-500 dark:text-gray-200;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+}
