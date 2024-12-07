@@ -178,9 +178,9 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
 
       {isFetching && (
         <div className="flex flex-col gap-1 p-1">
-          <div className="h-6 w-full bg-gray-200 rounded-md animate-pulse" />
-          <div className="h-6 w-full bg-gray-200 rounded-md animate-pulse" />
-          <div className="h-6 w-full bg-gray-200 rounded-md animate-pulse" />
+          <div className="h-6 w-full bg-gray-200 dark:bg-gray-500 rounded-md animate-pulse" />
+          <div className="h-6 w-full bg-gray-200 dark:bg-gray-500 rounded-md animate-pulse" />
+          <div className="h-6 w-full bg-gray-200 dark:bg-gray-500 rounded-md animate-pulse" />
         </div>
       )}
       {!isFetching && search.trim().length > 0 && options.length === 0 ? (
