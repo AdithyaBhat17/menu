@@ -87,7 +87,7 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
 
     const rect = menuItem.getBoundingClientRect();
     const spaceOnRight = window.innerWidth - rect.right;
-    const submenuWidth = 256;
+    const submenuWidth = menuContentRef.current?.clientWidth ?? 150;
 
     return spaceOnRight > submenuWidth ? "right" : "left";
   }, []);

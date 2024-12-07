@@ -44,8 +44,8 @@ h1 {
 }
 
 .menu-content {
-  @apply bg-white p-1 rounded-md shadow-md border border-gray-200 text-gray-700;
-  @apply min-w-[256px];
+  @apply bg-white p-1 rounded-md shadow-md border border-gray-200 text-gray-700 text-sm;
+  @apply min-w-[150px];
   @apply flex flex-col gap-1;
   @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700;
   @apply absolute z-10;
@@ -55,10 +55,10 @@ h1 {
   @apply dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200;
 }
 .menu-item {
-  @apply flex items-center justify-between;
-  @apply py-1 px-2 hover:bg-gray-100 rounded-md text-sm;
+  @apply flex items-center justify-between gap-x-5;
+  @apply py-1 px-2 hover:bg-gray-100 rounded-md text-xs;
   @apply dark:hover:bg-gray-700 ;
-  @apply cursor-pointer
+  @apply cursor-pointer;
 }
 .menu-item.focus {
   @apply bg-gray-100 dark:bg-gray-700;
