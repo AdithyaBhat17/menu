@@ -1,4 +1,4 @@
-import { StrictMode, useState } from "react";
+import { StrictMode, useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import Menu from "./components/menu";
@@ -24,7 +24,6 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>
 );
-
 export default function App() {
   return (
     <div className="flex flex-col gap-4 justify-start w-full h-full px-6">
@@ -34,16 +33,17 @@ export default function App() {
   );
 }
 
+const optionsUrl = `${API_URL}/options`;
 function MenuWithCustomTrigger() {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  const handleSelect = (selected: string[]) => {
+  const handleSelect = useCallback((selected: string[]) => {
     setSelectedItems(selected);
-  };
+  }, []);
 
   return (
     <Menu
-      url={`${API_URL}/options`}
+      url={optionsUrl}
       selectedItems={selectedItems}
       onSelect={handleSelect}
     >
@@ -56,19 +56,25 @@ function MenuWithCustomTrigger() {
   );
 }
 
+const fontsUrl = `${API_URL}/fonts`;
 function MenuWithDefaultTrigger() {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  const handleSelect = (selected: string[]) => {
+  const handleSelect = useCallback((selected: string[]) => {
     setSelectedItems(selected);
-  };
+  }, []);
+
+  const config = useMemo(
+    () => ({
+      search: { type: SearchType.EXTERNAL, placeholder: "Search" },
+    }),
+    []
+  );
 
   return (
     <Menu
-      url={`${API_URL}/fonts`}
-      config={{
-        search: { type: SearchType.EXTERNAL, placeholder: "Search" },
-      }}
+      url={fontsUrl}
+      config={config}
       selectedItems={selectedItems}
       onSelect={handleSelect}
     >

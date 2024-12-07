@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SearchType } from "../../constants/search";
 import MenuTrigger from "./menu-trigger";
 import { MenuContext } from "./context";
@@ -115,7 +115,12 @@ function Menu({
   );
 }
 
-Menu.Trigger = MenuTrigger;
+type MenuComponent = React.MemoExoticComponent<typeof Menu> & {
+  Trigger: typeof MenuTrigger;
+};
 
-export default Menu;
+const MemoizedMenu = memo(Menu) as MenuComponent;
+MemoizedMenu.Trigger = MenuTrigger;
+
+export default MemoizedMenu;
 export { MenuTrigger, MenuContent };
