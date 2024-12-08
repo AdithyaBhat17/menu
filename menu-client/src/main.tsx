@@ -46,7 +46,6 @@ function MenuWithCustomTrigger() {
       url={optionsUrl}
       selectedItems={selectedItems}
       onSelect={handleSelect}
-      useDebounce={300}
     >
       <Menu.Trigger asChild>
         <button className="w-fit px-2 py-1 border border-gray-300 rounded-md flex items-center gap-2">
