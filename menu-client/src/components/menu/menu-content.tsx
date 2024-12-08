@@ -135,10 +135,14 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
   );
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>, key: string) => {
+    (
+      e: React.KeyboardEvent<HTMLDivElement>,
+      key: string,
+      hasChildren: boolean
+    ) => {
       if (e.key === "Enter") {
         e.preventDefault();
-        handleSelect(key);
+        if (!hasChildren) handleSelect(key);
         const target = e.target as HTMLDivElement;
         if (!target.dataset.id) return;
         setHoveredItem(
@@ -213,7 +217,6 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
               role="menuitem"
               aria-selected={selected}
               aria-disabled={disabled}
-              aria-hidden={disabled}
             >
               <div
                 className={clsx("menu-item", {
@@ -229,8 +232,7 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
                 }
                 onKeyDown={(e) =>
                   !disabled &&
-                  !hasChildren &&
-                  handleKeyDown(e, option[textKey] as string)
+                  handleKeyDown(e, option[textKey] as string, hasChildren)
                 }
                 data-id={id}
                 tabIndex={0}
