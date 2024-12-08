@@ -28,10 +28,3 @@ If you want to try this on your local environment, follow the instructions below
 
 - Setup the API server using the instructions at [api-server-setup](/menu-server/README.md)
 - Setup the client using the instructions at [client-setup](/menu-client/README.md)
-
-### Next steps
-
-- If there were no time constraints, here are a few optimizations/enhancements I'd like to add to this component.
-   - a much better keyboard support: the current menu component has good a11y but keyboard shortcuts like arrow keys could be added to improve the overall UX.
-   - the menu trigger is a headless component whereas the menu content isn't. We could improve the DX of the component by allowing users to provide their own UI for the menu items.
-   - This menu works great for desktop users, but this is not a good UX for mobile users as per HCI guidelines. For mobile devices, a sheet/drawer UI would provide the ideal experience to the user.
