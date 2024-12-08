@@ -117,7 +117,7 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
   const handleMouseLeave = useCallback(() => {
     closeTimeout.current = setTimeout(() => {
       setHoveredItem(null);
-    }, 100);
+    }, 200);
   }, []);
 
   const handleSearchChange = useCallback(
