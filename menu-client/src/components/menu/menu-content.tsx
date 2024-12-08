@@ -67,12 +67,23 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
     const _options = menuOptions || data;
     if (!_options) return [];
     if (config.search?.type === SearchType.INTERNAL) {
+      const searchValue = useDebounce ? debouncedSearch : search;
       return _options.filter((option) =>
-        (option[textKey] as string).toLowerCase().includes(search.toLowerCase())
+        (option[textKey] as string)
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
       );
     }
     return _options;
-  }, [menuOptions, data, config.search?.type, search, textKey]);
+  }, [
+    menuOptions,
+    data,
+    config.search?.type,
+    search,
+    debouncedSearch,
+    textKey,
+    useDebounce,
+  ]);
 
   // menuItemsRef comes in handy to help us get the position of the menu item and render the
   // submenu in the correct position.

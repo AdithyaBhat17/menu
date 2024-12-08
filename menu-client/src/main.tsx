@@ -12,9 +12,9 @@ import { SearchType } from "./constants/search";
  * - Add internal and external search ✅
  * - Add select states ✅
  * - Test multiple menus on one page ✅
- * - Add keyboard navigation ✅
  * - Add a11y support ✅
  * - Add disabled items (optional) ✅
+ * - Add debounce support for search (optional) ✅
  */
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -46,6 +46,7 @@ function MenuWithCustomTrigger() {
       url={optionsUrl}
       selectedItems={selectedItems}
       onSelect={handleSelect}
+      useDebounce={300}
     >
       <Menu.Trigger asChild>
         <button className="w-fit px-2 py-1 border border-gray-300 rounded-md flex items-center gap-2">
