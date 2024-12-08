@@ -40,6 +40,7 @@ Here's how the data and app state flows through the components.
 Here are some updates done to improve the performance and UX of the menu component.
 - The options are cached based on the URL and search parameters to avoid redundant API calls. However, if the API is expected
 to update options frequently we might have to switch to a stale-while-revalidate approach.
+- We use the `useDebouncedValue` hook to prevent unnecessary API requests during search if the user prefers it.
 - We use `useLayoutEffect` to compute and update the position of the menu before the browser repaints the screen to avoid glitches on the UI.
 - We've memoized certain values and callbacks using React's `useMemo` and `useCallback` hooks to prevent unnecessary re-renders.
 - The component supports both light and dark modes.

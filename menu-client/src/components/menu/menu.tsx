@@ -22,12 +22,14 @@ function Menu({
   children,
   selectedItems = [],
   onSelect,
+  useDebounce,
 }: {
   url: string;
   config?: Config<unknown>;
   children: React.ReactNode;
   selectedItems?: string[];
   onSelect?: (selected: string[]) => void;
+  useDebounce?: number;
 }) {
   const menuConfig = useMemo(() => ({ ...defaultConfig, ...config }), [config]);
 
@@ -87,10 +89,10 @@ function Menu({
       nestedKey,
       cmdKey,
       disabledKey,
+      useDebounce,
     }),
     [
       open,
-      setOpen,
       menuConfig,
       selectedItems,
       handleSelect,
@@ -98,6 +100,7 @@ function Menu({
       nestedKey,
       cmdKey,
       disabledKey,
+      useDebounce,
     ]
   );
 

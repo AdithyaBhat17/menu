@@ -13,6 +13,7 @@ import { useFetch } from "./hooks/useFetch";
 import { MenuContext } from "./context";
 import { SearchType } from "../../constants/search";
 import { Check } from "lucide-react";
+import { useDebouncedValue } from "./hooks/useDebouncedValue";
 
 type MenuOption = {
   id: string;
@@ -27,7 +28,7 @@ type MenuContentProps = {
 
 function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState("");
   const [menuPosition, setMenuPosition] = useState<"bottom" | "top" | null>(
     null
   );
@@ -40,16 +41,23 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
     nestedKey,
     cmdKey,
     disabledKey,
+    useDebounce,
   } = useContext(MenuContext);
+
+  const [debouncedSearch] = useDebouncedValue<string>(
+    search,
+    useDebounce || 300
+  );
 
   /*
     I'm assuming that we only either support internal or external search, not both.
     But supporting both search types should not be a problem.
-    TODO: add debounce support for external search and avoid unnecessary API requests.
   */
   const { data, isFetching, error } = useFetch<MenuOption[]>(
     url +
-      (config.search?.type === SearchType.EXTERNAL ? `?search=${search}` : ""),
+      (config.search?.type === SearchType.EXTERNAL
+        ? `?search=${useDebounce ? debouncedSearch : search}`
+        : ""),
     {
       enabled: !!url,
     }
@@ -64,7 +72,7 @@ function MenuContent({ menuOptions, parentId, url }: MenuContentProps) {
       );
     }
     return _options;
-  }, [menuOptions, data, config.search?.type, textKey, search]);
+  }, [menuOptions, data, config.search?.type, search, textKey]);
 
   // menuItemsRef comes in handy to help us get the position of the menu item and render the
   // submenu in the correct position.

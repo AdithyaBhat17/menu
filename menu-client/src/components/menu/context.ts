@@ -18,6 +18,7 @@ export const MenuContext = createContext<{
   nestedKey: string;
   cmdKey: string;
   disabledKey: string;
+  useDebounce?: number
 }>({
   open: false,
   setOpen: () => {},
@@ -28,4 +29,5 @@ export const MenuContext = createContext<{
   nestedKey: "children",
   cmdKey: "cmd",
   disabledKey: "disabled",
+  useDebounce: undefined
 });

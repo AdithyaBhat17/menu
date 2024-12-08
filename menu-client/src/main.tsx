@@ -77,6 +77,7 @@ function MenuWithDefaultTrigger() {
       config={config}
       selectedItems={selectedItems}
       onSelect={handleSelect}
+      useDebounce={300}
     >
       <Menu.Trigger>Open menu</Menu.Trigger>
     </Menu>
